@@ -58,7 +58,7 @@ const NewSong = (props) => {
                     <Picker.Item label="Refrain" value="refrain" />
                     <Picker.Item label="Bridge" value="bridge" />
                 </Picker>
-                  <TextInput textAlignVertical='top' value={item.content} onChangeText={(e)=>{setCorps([...corps, corps[index].content=e]);setCorps(corps.filter(e=>e.type!=undefined))}} placeholder='Contenu de cette partie' style={{width:Dimensions.get('window').width-10,minHeight:(Dimensions.get('window').height-125)*6/40,height:(Dimensions.get('window').height-100)*6/10,backgroundColor:'white',fontSize:18,fontWeight:'bold',flexDirection:'column',justifyContent:'flex-start',alignItems:'flex-start',paddingLeft:5}} multiline={true} />
+                <TextInput textAlignVertical='top' value={item.content} onChangeText={(e)=>{setCorps([...corps, corps[index].content=e]);setCorps(corps.filter(e=>e.type!=undefined))}} placeholder='Contenu de cette partie' style={{width:Dimensions.get('window').width-10,minHeight:(Dimensions.get('window').height-125)*6/40,height:(Dimensions.get('window').height-100)*6/10,backgroundColor:'white',fontSize:18,fontWeight:'bold',flexDirection:'column',justifyContent:'flex-start',alignItems:'flex-start',paddingLeft:5}} multiline={true} />
               </View>
             ))
           }

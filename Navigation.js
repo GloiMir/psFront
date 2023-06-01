@@ -156,11 +156,11 @@ export default function Navigation() {
                 <Stack.Screen
                     name='Check'
                     component={Check}
-                    options={{ headerStyle: { backgroundColor: '#BF751B', height: 100 }, headerTitleStyle: { fontSize: 25, fontWeight: 'bold' }, headerTitle: 'titre' }} />
+                    options={{ headerStyle: { backgroundColor: '#BF751B', height: 100 }, headerTitleStyle: { fontSize: 20, fontWeight: 'bold' }, headerTitle: 'titre' }} />
                 <Stack.Screen
                     name='Lecture'
                     component={Lecture}
-                    options={{ headerStyle: { backgroundColor: 'rgba(63,67,89,1)', height: 100 }, headerTitleStyle: { fontSize: 20, fontWeight: 'bold',color:'black' }, headerTitle: titre, headerTintColor:'black' }} />
+                    options={{ headerStyle: { backgroundColor: 'rgba(63,67,89,1)', height: 100 }, headerTitleStyle: { fontSize: 18, fontWeight: 'bold',color:'black' }, headerTitle: titre, headerTintColor:'black' }} />
                 <Stack.Screen
                     name='Gestion'
                     component={Gestion}

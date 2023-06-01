@@ -14,6 +14,8 @@ let timer
 const Gestion = (props) => {
   const { songsAdmin,past } = useSelector((state) => state.userReducer);
   const [showAlerte,setShowAlerte] = useState(false)
+  const [showWarning,setShowWarning] = useState(false)
+  const [id,setId] = useState('')
   const dispatch = useDispatch()
   const receiving = ()=>{
     NetInfo.addEventListener((net)=>{
@@ -36,13 +38,18 @@ const Gestion = (props) => {
     },100)
   }
   passer()
-  const deleteSong = (id) =>{
+  const deleteSong = () =>{
     NetInfo.addEventListener((info)=>{
       if(info.isConnected===true){
-        axios.post(`${baseUrl}/delete`,{id:id})
-        .then((res)=>{
-          loadSongsAdmin(res.data)
-          loadSongs(res.data)
+        axios.post(`${baseUrl}/delete?id=${id}`)
+        .then((resp)=>{
+          axios.get(`${baseUrl}/songs`)
+          .then(res=>{
+            loadSongsAdmin(res.data)
+            loadSongs(res.data)
+            setShowWarning(false)
+            setId('')
+          })
         })
       }else setShowAlerte(true)
     })
@@ -57,7 +64,7 @@ const Gestion = (props) => {
           songsAdmin !=null && songsAdmin.map((item,index)=>{
             return(
               <View key={index} style={{flexDirection:'row',width:Dimensions.get('window').width,height:Dimensions.get('window').height/12,backgroundColor:'rgba(63,67,89,1)',marginTop:2}} >
-                <TouchableOpacity style={{width:'80%',height:'100%',justifyContent:'space-evenly',paddingLeft:5}} onPress={()=>{dispatch(setTitre(item.titre));props.navigation.navigate('Lecture',{song:item})}}>
+                <TouchableOpacity style={{width:'80%',height:'100%',justifyContent:'space-evenly',paddingLeft:5}} onPress={()=>{dispatch(setTitre(item.titre.toUpperCase()));props.navigation.navigate('Lecture',{song:item})}}>
                   <Text style={{fontWeight:'bold',fontSize:16,color:'white'}}>{item.titre}</Text>
                   <Text style={{fontWeight:'bold',fontSize:14,color:'rgba(255,255,255,0.7)',fontStyle:'italic'}}>{item.auteur}</Text>
                 </TouchableOpacity>
@@ -65,7 +72,7 @@ const Gestion = (props) => {
                     <TouchableOpacity onPress={()=>props.navigation.navigate('EditSong',{data:item})}>
                       <Entypo name='edit' size={24} color='white'/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=> deleteSong(item._id)}>
+                    <TouchableOpacity onPress={()=>{setId(item._id);setShowWarning(true)}}>
                       <MaterialIcons name='delete' size={24} color='white' />
                     </TouchableOpacity>
                 </View>
@@ -77,6 +84,18 @@ const Gestion = (props) => {
       <Overlay overlayStyle={{width:'80%',backgroundColor:'#3C4C59',padding:0,borderRadius:15,alignItems:'center'}} isVisible={showAlerte} onBackdropPress={()=>setShowAlerte(false)}>
           <MaterialIcons name="wifi-off" size={80} color="orange" />
           <Text style={{fontSize:20,fontWeight:'bold',textAlign:'center',marginTop:10,marginBottom:10,color:'white'}}>Verifiez votre connexion internet</Text>
+      </Overlay>
+      <Overlay visible={showWarning} onBackdropPress={()=>{setShowWarning(false)}} overlayStyle={{width:'80%',height:'30%',justifyContent:'space-evenly',alignItems:'center',backgroundColor:'#3C4C59',borderRadius:10}}>
+          <MaterialIcons name="error" size={48} color="orange" />
+          <Text style={{color:'white',fontWeight:'bold',fontSize:18,textAlign:'center'}}>Etes-vous sûr de vouloir supprimer ce cantique ?</Text>
+          <View style={{width:'100%',flexDirection:'row',justifyContent:'space-around'}}>
+            <TouchableOpacity style={{backgroundColor:'rgba(63,67,89,1)',borderRadius:10,height:40,width:50,justifyContent:'center',alignItems:'center'}} onPress={deleteSong}>
+                <Text style={{color:'white',fontSize:16,fontWeight:'bold'}}>Oui</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{backgroundColor:'rgba(63,67,89,1)',borderRadius:10,height:40,width:50,justifyContent:'center',alignItems:'center'}} onPress={()=>setShowWarning(false)}>
+                <Text style={{color:'white',fontSize:16,fontWeight:'bold'}}>Non</Text>
+            </TouchableOpacity>
+          </View>
       </Overlay>
     </View>
   )
