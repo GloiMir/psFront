@@ -29,7 +29,7 @@ const Check = (props) => {
   return (
     <KeyboardAwareScrollView>
     <View style={{justifyContent:'space-around',alignItems:'center',height:Dimensions.get('window').height-125,backgroundColor:'rgba(63,67,89,0.5)'}}>
-      <Image source={require('../assets/logos1.png')} style={{width:250,height:250}} />
+      <Image source={require('../assets/logo.png')} style={{width:250,height:250}} />
           <TextInput
           placeholder='Entrez le code admin'
           style={{width:Dimensions.get('window').width-10,height:Dimensions.get('window').height/12,backgroundColor:'white',fontSize:18,borderRadius:10,fontWeight:'bold'}}
