@@ -1,5 +1,5 @@
 //Gestion des chansons de la chorale
-import { View, Text,ScrollView,TouchableOpacity,Dimensions } from 'react-native'
+import { View, Text,ScrollView,TouchableOpacity,Dimensions,StatusBar } from 'react-native'
 import { Overlay } from 'react-native-elements'
 import React,{useEffect, useState} from 'react'
 import axios from 'axios'
@@ -58,7 +58,7 @@ const Gestion = (props) => {
     receiving();
   },[])
   return (
-    <View style={{height:Dimensions.get('window').height-125,alignItems:'center',backgroundColor:'rgba(63,67,89,0.5)',paddingBottom:5}}>
+    <View style={{height:Dimensions.get('window').height-StatusBar.currentHeight-100,alignItems:'center',backgroundColor:'rgba(63,67,89,0.5)',paddingBottom:5}}>
       <ScrollView>
         {
           songsAdmin !=null && songsAdmin.map((item,index)=>{

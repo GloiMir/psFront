@@ -1,5 +1,5 @@
 //Liste de chansons de la chorale
-import { View, Text, TouchableOpacity,ScrollView,Dimensions } from 'react-native'
+import { View, Text, TouchableOpacity,ScrollView,Dimensions, StatusBar } from 'react-native'
 import React,{useState,useEffect} from 'react'
 import { useSelector,useDispatch } from 'react-redux';
 import { loadSongs,loadSongsAdmin,setTitre } from '../redux/actions';
@@ -35,6 +35,7 @@ const Liste = (props) => {
   const [showPsaume,setShowPsaume] = useState(true)
   const [psaume,setPsaume] = useState({})
   const { songs } = useSelector((state) => state.userReducer);
+  const height = StatusBar.currentHeight
   const dispatch = useDispatch()
   useEffect(()=>{
     setPsaume(psaumes[aleatoire(0,19)])
@@ -44,27 +45,8 @@ const Liste = (props) => {
     fetching()
   },[])
   return (
-    <View style={{height:Dimensions.get('window').height-125,alignItems:'center',backgroundColor:'rgba(63,67,89,0.5)',paddingBottom:5}}>
+    <View style={{height:Dimensions.get('window').height-StatusBar.currentHeight-100,alignItems:'center',backgroundColor:'rgba(63,67,89,0.5)',paddingBottom:5}}>
       <ScrollView>
-        {
-          songs != null && songs.map((item,index)=>{
-            return(
-              <TouchableOpacity key={index} style={{width:Dimensions.get('window').width,height:Dimensions.get('window').height/12,backgroundColor:'rgba(63,67,89,1)',marginTop:2,justifyContent:'space-evenly'}} onPress={()=>{dispatch(setTitre(item.titre.toUpperCase()));props.navigation.navigate('Lecture',{song:item})}}>
-                <Text style={{fontSize:16,fontWeight:'bold',marginLeft:10,color:'white',maxWidth:'100%'}}>{item.titre}</Text>
-                <Text style={{fontSize:14,fontWeight:'bold',marginLeft:10,fontStyle:'italic',color:'rgba(255,255,255,0.7)'}}>{item.auteur}</Text>
-              </TouchableOpacity>
-            )
-          })
-        }{
-          songs != null && songs.map((item,index)=>{
-            return(
-              <TouchableOpacity key={index} style={{width:Dimensions.get('window').width,height:Dimensions.get('window').height/12,backgroundColor:'rgba(63,67,89,1)',marginTop:2,justifyContent:'space-evenly'}} onPress={()=>{dispatch(setTitre(item.titre));props.navigation.navigate('Lecture',{song:item})}}>
-                <Text style={{fontSize:16,fontWeight:'bold',marginLeft:10,color:'white',maxWidth:'100%'}}>{item.titre}</Text>
-                <Text style={{fontSize:14,fontWeight:'bold',marginLeft:10,fontStyle:'italic',color:'rgba(255,255,255,0.7)'}}>{item.auteur}</Text>
-              </TouchableOpacity>
-            )
-          })
-        }
         {
           songs != null && songs.map((item,index)=>{
             return(

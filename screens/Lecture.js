@@ -1,11 +1,11 @@
 //Lecture de texte de la chorale
-import { View, Text, ScrollView, Dimensions } from 'react-native'
+import { View, Text, ScrollView, Dimensions, StatusBar } from 'react-native'
 import React from 'react'
 
 const Lecture = (props) => {
   const {song} = props.route.params
   return (
-    <View style={{height:Dimensions.get('window').height-125,alignItems:'center',backgroundColor:'#C5D0D9',paddingBottom:5}}>
+    <View style={{height:Dimensions.get('window').height-StatusBar.currentHeight-100,alignItems:'center',backgroundColor:'rgba(63,67,89,0.5)',paddingBottom:5}}>
       <ScrollView>
         {
           song.corps.map((item,index)=>{

@@ -1,5 +1,5 @@
 // Insertion des nouveaux cantiques
-import { View, Text,TextInput,ScrollView,Dimensions,TouchableOpacity,FlatList } from 'react-native'
+import { View, Text,TextInput,ScrollView,Dimensions,TouchableOpacity,FlatList, StatusBar } from 'react-native'
 // import InputScrollView from 'react-native-input-scroll-view'
 import React,{useState} from 'react'
 import { Overlay } from 'react-native-elements'
@@ -37,7 +37,7 @@ const NewSong = (props) => {
   
   return (
       <KeyboardAwareScrollView>
-    <View style={{height:Dimensions.get('window').height-125,width:Dimensions.get('window').width,alignItems:'center',backgroundColor:'rgba(63,67,89,0.5)'}} >
+    <View style={{height:Dimensions.get('window').height-StatusBar.currentHeight-100,width:Dimensions.get('window').width,alignItems:'center',backgroundColor:'rgba(63,67,89,0.5)'}} >
       <View style={{height:(Dimensions.get('window').height-125)*(2/10),width:'100%',alignItems:'center',justifyContent:'space-around'}}>
         <TextInput style={{width:Dimensions.get('window').width-10,height:'40%',backgroundColor:'white',fontSize:18,fontWeight:'bold',paddingLeft:5}} maxLength={20} value={auteur} onChangeText={setAuteur} placeholder='Auteur du cantique' />
         <TextInput style={{width:Dimensions.get('window').width-10,height:'40%',backgroundColor:'white',fontSize:18,fontWeight:'bold',paddingLeft:5}} maxLength={40} value={titre} onChangeText={setTitre} placeholder='Titre du cantique' />

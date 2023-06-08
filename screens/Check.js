@@ -1,5 +1,5 @@
 //Espace de saisi de mot de passe pour valider le gestionnaire
-import { View, Text,TouchableOpacity,TextInput,Dimensions,Image } from 'react-native'
+import { View, Text,TouchableOpacity,TextInput,Dimensions,Image,StatusBar } from 'react-native'
 import { Overlay } from 'react-native-elements'
 import React,{useState} from 'react'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -28,17 +28,19 @@ const Check = (props) => {
   }
   return (
     <KeyboardAwareScrollView>
-    <View style={{justifyContent:'space-around',alignItems:'center',height:Dimensions.get('window').height-125,backgroundColor:'rgba(63,67,89,0.5)'}}>
+    <View style={{justifyContent:'space-evenly',alignItems:'center',height:Dimensions.get('window').height-StatusBar.currentHeight-100,backgroundColor:'rgba(63,67,89,0.5)'}}>
       <Image source={require('../assets/logo.png')} style={{width:250,height:250}} />
-          <TextInput
-          placeholder='Entrez le code admin'
-          style={{width:Dimensions.get('window').width-10,height:Dimensions.get('window').height/12,backgroundColor:'white',fontSize:18,borderRadius:10,fontWeight:'bold'}}
-          value={code}
-          onChangeText={setCode}
-          />
-      <TouchableOpacity style={{justifyContent:'center',width:Dimensions.get('window').width-10,height:Dimensions.get('window').height/12,backgroundColor:'rgba(63,67,89,1)',fontSize:20,borderRadius:30}} onPress={checking}>
-        <Text style={{textAlign:'center',color:'white',fontSize:18,fontWeight:'bold'}} >Envoyer</Text>
-      </TouchableOpacity>
+      <View>
+        <TextInput
+        placeholder='Entrez le code admin'
+        style={{width:Dimensions.get('window').width-20,height:Dimensions.get('window').height/15,backgroundColor:'white',fontSize:18,borderRadius:10,fontWeight:'bold'}}
+        value={code}
+        onChangeText={setCode}
+        />
+        <TouchableOpacity style={{justifyContent:'center',width:Dimensions.get('window').width-20,height:Dimensions.get('window').height/15,backgroundColor:'rgba(63,67,89,1)',fontSize:20,borderRadius:30,marginTop:20}} onPress={checking}>
+          <Text style={{textAlign:'center',color:'white',fontSize:18,fontWeight:'bold'}} >Envoyer</Text>
+        </TouchableOpacity>
+      </View>
     </View>
       <Overlay overlayStyle={{width:'80%',backgroundColor:'#3C4C59',padding:0,borderRadius:15,alignItems:'center'}} isVisible={showAlerte} onBackdropPress={()=>setShowAlerte(false)}>
         <Entypo name="circle-with-cross" size={80} color="red" />
