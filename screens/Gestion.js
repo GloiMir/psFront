@@ -65,7 +65,7 @@ const Gestion = (props) => {
             return(
               <View key={index} style={{flexDirection:'row',width:Dimensions.get('window').width,height:Dimensions.get('window').height/12,backgroundColor:'rgba(63,67,89,1)',marginTop:2}} >
                 <TouchableOpacity style={{width:'80%',height:'100%',justifyContent:'space-evenly',paddingLeft:5}} onPress={()=>{dispatch(setTitre(item.titre.toUpperCase()));props.navigation.navigate('Lecture',{song:item})}}>
-                  <Text style={{fontWeight:'bold',fontSize:16,color:'white'}}>{item.titre}</Text>
+                  <Text style={{fontWeight:'bold',fontSize:16,color:'white'}}>{`${index+1}. ${item.titre}`}</Text>
                   <Text style={{fontWeight:'bold',fontSize:14,color:'rgba(255,255,255,0.7)',fontStyle:'italic'}}>{item.auteur}</Text>
                 </TouchableOpacity>
                 <View style={{flexDirection:'row',alignItems:'center',width:'20%',height:'100%',justifyContent:'space-around'}}>

@@ -33,7 +33,7 @@ const Check = (props) => {
       <View>
         <TextInput
         placeholder='Entrez le code admin'
-        style={{width:Dimensions.get('window').width-20,height:Dimensions.get('window').height/15,backgroundColor:'white',fontSize:18,borderRadius:10,fontWeight:'bold'}}
+        style={{width:Dimensions.get('window').width-20,height:Dimensions.get('window').height/15,backgroundColor:'white',fontSize:18,borderRadius:10,fontWeight:'bold',color:'rgba(63,67,89,1)'}}
         value={code}
         onChangeText={setCode}
         />

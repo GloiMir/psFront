@@ -16,7 +16,7 @@ const App = () => {
           <StatusBar
             animated={true}
             backgroundColor="rgba(63,67,89,1)"
-            barStyle="dark-content"
+            barStyle="light-content"
             hidden={false}
           />
           <Navigation />

@@ -51,7 +51,7 @@ const Liste = (props) => {
           songs != null && songs.map((item,index)=>{
             return(
               <TouchableOpacity key={index} style={{width:Dimensions.get('window').width,height:Dimensions.get('window').height/12,backgroundColor:'rgba(63,67,89,1)',marginTop:2,justifyContent:'space-evenly'}} onPress={()=>{dispatch(setTitre(item.titre.toUpperCase()));props.navigation.navigate('Lecture',{song:item})}}>
-                <Text style={{fontSize:16,fontWeight:'bold',marginLeft:10,color:'white',maxWidth:'100%'}}>{item.titre}</Text>
+                <Text style={{fontSize:16,fontWeight:'bold',marginLeft:10,color:'white',maxWidth:'100%'}}>{`${index+1}. ${item.titre}`}</Text>
                 <Text style={{fontSize:14,fontWeight:'bold',marginLeft:10,fontStyle:'italic',color:'rgba(255,255,255,0.7)'}}>{item.auteur}</Text>
               </TouchableOpacity>
             )
@@ -59,8 +59,8 @@ const Liste = (props) => {
         }
       </ScrollView>
       <Overlay overlayStyle={{width:'80%',backgroundColor:'#3C4C59',padding:0,borderRadius:15}} isVisible={showPsaume} onBackdropPress={()=>setShowPsaume(false)}>
-        <Text style={{fontSize:20,color:'black',fontWeight:'bold',textAlign:'center',marginTop:10,marginBottom:10}}>{psaume.verset}</Text>
-        <Text style={{fontSize:18,color:'white',fontWeight:'bold',textAlign:'center',marginTop:10,marginBottom:10}}>{psaume.content}</Text>
+        <Text style={{fontSize:18,color:'white',fontWeight:'bold',textAlign:'center',marginTop:10,marginBottom:10}}>{psaume.verset}</Text>
+        <Text style={{fontSize:18,color:'white',textAlign:'center',marginTop:10,marginBottom:10}}>{psaume.content}</Text>
       </Overlay>
     </View>
   )

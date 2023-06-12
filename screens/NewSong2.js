@@ -39,15 +39,15 @@ const NewSong = (props) => {
       <KeyboardAwareScrollView>
     <View style={{height:Dimensions.get('window').height-StatusBar.currentHeight-100,width:Dimensions.get('window').width,alignItems:'center',backgroundColor:'rgba(63,67,89,0.5)'}} >
       <View style={{height:(Dimensions.get('window').height-125)*(2/10),width:'100%',alignItems:'center',justifyContent:'space-around'}}>
-        <TextInput style={{width:Dimensions.get('window').width-10,height:'40%',backgroundColor:'white',fontSize:18,fontWeight:'bold',paddingLeft:5}} maxLength={20} value={auteur} onChangeText={setAuteur} placeholder='Auteur du cantique' />
-        <TextInput style={{width:Dimensions.get('window').width-10,height:'40%',backgroundColor:'white',fontSize:18,fontWeight:'bold',paddingLeft:5}} maxLength={40} value={titre} onChangeText={setTitre} placeholder='Titre du cantique' />
+        <TextInput style={{width:Dimensions.get('window').width-10,height:'40%',backgroundColor:'white',fontSize:18,fontWeight:'bold',paddingLeft:5,color:'rgba(63,67,89,1)'}} maxLength={20} value={auteur} onChangeText={setAuteur} placeholder='Auteur du cantique' />
+        <TextInput style={{width:Dimensions.get('window').width-10,height:'40%',backgroundColor:'white',fontSize:18,fontWeight:'bold',paddingLeft:5,color:'rgba(63,67,89,1)'}} maxLength={40} value={titre} onChangeText={setTitre} placeholder='Titre du cantique' />
       </View>
       <ScrollView>
           {
             corps.map((item,index)=>(
               <View key={index} style={{width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:5}}>
                 <Picker
-                    style={{ width: Dimensions.get('window').width-10, height: (Dimensions.get('window').height-125)/10, fontSize:18, fontWeight:'bold',backgroundColor:'white'}}
+                    style={{ width: Dimensions.get('window').width-10, height: (Dimensions.get('window').height-125)/10, fontSize:18, fontWeight:'bold',backgroundColor:'white',color:'rgba(63,67,89,1)'}}
                     selectedValue={item.type}
                     onValueChange={(itemValue, itemIndex) =>{
                       setCorps([...corps, corps[index].type=itemValue]);setCorps(corps.filter(e=>e.type!=undefined))
@@ -58,7 +58,7 @@ const NewSong = (props) => {
                     <Picker.Item label="Refrain" value="refrain" />
                     <Picker.Item label="Bridge" value="bridge" />
                 </Picker>
-                <TextInput textAlignVertical='top' value={item.content} onChangeText={(e)=>{setCorps([...corps, corps[index].content=e]);setCorps(corps.filter(e=>e.type!=undefined))}} placeholder='Contenu de cette partie' style={{width:Dimensions.get('window').width-10,minHeight:(Dimensions.get('window').height-125)*6/40,height:(Dimensions.get('window').height-100)*6/10,backgroundColor:'white',fontSize:18,fontWeight:'bold',flexDirection:'column',justifyContent:'flex-start',alignItems:'flex-start',paddingLeft:5}} multiline={true} />
+                <TextInput textAlignVertical='top' value={item.content} onChangeText={(e)=>{setCorps([...corps, corps[index].content=e]);setCorps(corps.filter(e=>e.type!=undefined))}} placeholder='Contenu de cette partie' style={{width:Dimensions.get('window').width-10,minHeight:(Dimensions.get('window').height-125)*6/40,height:(Dimensions.get('window').height-100)*6/10,backgroundColor:'white',fontSize:18,fontWeight:'bold',flexDirection:'column',justifyContent:'flex-start',alignItems:'flex-start',paddingLeft:5,color:'rgba(63,67,89,1)'}} multiline={true} />
               </View>
             ))
           }

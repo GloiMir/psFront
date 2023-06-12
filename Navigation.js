@@ -48,7 +48,7 @@ const MyTabs = () => {
         <Drawer.Navigator screenOptions={{
             drawerActiveTintColor: 'white', drawerContentStyle: { backgroundColor: 'rgba(63,67,89,0.5)' },
             drawerInactiveTintColor: 'white', drawerActiveBackgroundColor: 'rgba(63,67,89,1)',
-            drawerLabelStyle:{fontSize:18, fontWeight:'bold'},headerTintColor:'black'
+            drawerLabelStyle:{fontSize:18, fontWeight:'bold'},headerTintColor:'white'
         }}>
             <Drawer.Screen
                 name='Principale'
@@ -56,7 +56,7 @@ const MyTabs = () => {
                 options={{
                     headerRight:()=>(
                     <TouchableOpacity style={{marginRight:20}} onPress={receiving}>
-                        <FontAwesome name='refresh' size={24} color="black" />
+                        <FontAwesome name='refresh' size={24} color="white" />
                     </TouchableOpacity>
                     ),
                     headerShown: true,
@@ -68,7 +68,7 @@ const MyTabs = () => {
                     headerTitleStyle: {
                         fontSize: 20,
                         fontWeight: 'bold',
-                        color:'black'
+                        color:'white'
                     },
                     drawerIcon :()=> <FontAwesome name="home" size={24} color="white" />,
                     title: 'Principale',
@@ -87,7 +87,7 @@ const MyTabs = () => {
                     headerTitleStyle: {
                         fontSize: 20,
                         fontWeight: 'bold',
-                        color:'black'
+                        color:'white'
                     },
                     drawerIcon :()=> <FontAwesome5 name="house-user" size={20} color="white" />,
                     title: 'Gestion'
@@ -106,7 +106,7 @@ const MyTabs = () => {
                     headerTitleStyle: {
                         fontSize: 20,
                         fontWeight: 'bold',
-                        color:'black'
+                        color:'white'
                     },
                     drawerIcon :()=> <AntDesign name="infocirlceo" size={24} color="white" />,
                     title: 'À propos'
@@ -160,28 +160,28 @@ export default function Navigation() {
                 <Stack.Screen
                     name='Lecture'
                     component={Lecture}
-                    options={{ headerStyle: { backgroundColor: 'rgba(63,67,89,1)', height: 100 }, headerTitleStyle: { fontSize: 18, fontWeight: 'bold',color:'black' }, headerTitle: titre, headerTintColor:'black' }} />
+                    options={{ headerStyle: { backgroundColor: 'rgba(63,67,89,1)', height: 100 }, headerTitleStyle: { fontSize: 18, fontWeight: 'bold',color:'white' }, headerTitle: titre, headerTintColor:'white' }} />
                 <Stack.Screen
                     name='Gestion'
                     component={Gestion}
                     options={{ headerRight:()=>(
                         <View style={{flexDirection:'row'}}>
                             <TouchableOpacity style={{marginRight:20}} onPress={receiving}>
-                                <FontAwesome name='refresh' size={24} color="black" />
+                                <FontAwesome name='refresh' size={24} color="white" />
                             </TouchableOpacity>
                             <TouchableOpacity style={{marginRight:20}} onPress={passer}>
-                                <FontAwesome name="plus" size={24} color="black" />
+                                <FontAwesome name="plus" size={24} color="white" />
                             </TouchableOpacity>
                         </View>                
-                    ) ,headerStyle: { backgroundColor: 'rgba(63,67,89,1)', height: 100 }, headerTitleStyle: { fontSize: 20, fontWeight: 'bold',color:'black' }, headerTitle: 'Gestion des cantiques',headerTintColor:'black' }} />
+                    ) ,headerStyle: { backgroundColor: 'rgba(63,67,89,1)', height: 100 }, headerTitleStyle: { fontSize: 20, fontWeight: 'bold',color:'white' }, headerTitle: 'Gestion des cantiques',headerTintColor:'white' }} />
                 <Stack.Screen
                     name='NewSong'
                     component={NewSong}
-                    options={{ headerStyle: { backgroundColor: 'rgba(63,67,89,1)', height: 100 }, headerTitleStyle: { fontSize: 20, fontWeight: 'bold',color:'black' }, headerTitle: 'Nouveau cantique',headerTintColor:'black' }} />
+                    options={{ headerStyle: { backgroundColor: 'rgba(63,67,89,1)', height: 100 }, headerTitleStyle: { fontSize: 20, fontWeight: 'bold',color:'white' }, headerTitle: 'Nouveau cantique',headerTintColor:'white' }} />
                 <Stack.Screen
                     name='EditSong'
                     component={EditSong}
-                    options={{ headerStyle: { backgroundColor: 'rgba(63,67,89,1)', height: 100 }, headerTitleStyle: { fontSize: 20, fontWeight: 'bold',color:'black' }, headerTitle: 'Modifier le cantique',headerTintColor:'black' }} />
+                    options={{ headerStyle: { backgroundColor: 'rgba(63,67,89,1)', height: 100 }, headerTitleStyle: { fontSize: 20, fontWeight: 'bold',color:'white' }, headerTitle: 'Modifier le cantique',headerTintColor:'white' }} />
             </Stack.Navigator>
             <Overlay overlayStyle={{width:'80%',backgroundColor:'#3C4C59',padding:0,borderRadius:15,alignItems:'center'}} isVisible={showAlerte} onBackdropPress={()=>setShowAlerte(false)}>
                 <MaterialIcons name="wifi-off" size={80} color="orange" />
