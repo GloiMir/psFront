@@ -13,13 +13,13 @@ const Lecture = (props) => {
               case 'couplet':
                 return(
                   <View key={index} style={{backgroundColor:'#3C4C59',marginTop:5,marginLeft:5,marginRight:5,padding:5,borderRadius:10}}>
-                    <Text style={{maxWidth:Dimensions.get('window').width-10,fontSize:18,color:'white',textAlign:'center',fontWeight:'bold',fontStyle:'italic'}}>{item.content}</Text>
+                    <Text style={{maxWidth:Dimensions.get('window').width-10,fontSize:18,color:'white',textAlign:'center',fontStyle:'italic'}}>{item.content}</Text>
                   </View>
                 )
               case 'refrain':
                 return(
                   <View key={index} style={{backgroundColor:'rgba(63,67,89,1)',marginTop:5,marginLeft:5,marginRight:5,padding:5,borderRadius:10}}>
-                    <Text style={{maxWidth:Dimensions.get('window').width-10,fontSize:18,color:'white',fontStyle:'italic',fontWeight:'bold',textAlign:'center'}}>{item.content}</Text>
+                    <Text style={{maxWidth:Dimensions.get('window').width-10,fontSize:18,color:'white',fontStyle:'italic',textAlign:'center'}}>{item.content}</Text>
                   </View>
                 )
               case 'bridge':

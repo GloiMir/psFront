@@ -22,7 +22,7 @@ import EditSong from './screens/EditSong2'
 import {AntDesign, Foundation, FontAwesome,FontAwesome5,Entypo,MaterialIcons ,MaterialCommunityIcons} from '@expo/vector-icons';
 
 import axios from 'axios'
-import { loadSongs,loadSongsAdmin,setPast } from './redux/actions'
+import { loadSongs,loadSongsAdmin,setPast,loadInters,loadIntersAdmin } from './redux/actions'
 import {useDispatch,useSelector} from 'react-redux'
 import { baseUrl } from './api'
 
@@ -36,9 +36,13 @@ const MyTabs = () => {
     const receiving = ()=>{
         NetInfo.addEventListener((net)=>{
             if(net.isConnected===true){
-                axios.get(`${baseUrl}/songs`)
+                axios.get(`${baseUrl}/songs?type=composition`)
                 .then(res=>{
                     dispatch(loadSongs(res.data))
+                })
+                axios.get(`${baseUrl}/songs?type=interpretation`)
+                .then(res=>{
+                    dispatch(loadInters(res.data))
                 })
             }else setShowAlerte(true)
         })
@@ -132,10 +136,15 @@ export default function Navigation() {
     const receiving = ()=>{
         NetInfo.addEventListener((net)=>{
             if(net.isConnected===true){
-                axios.get(`${baseUrl}/songs`)
+                axios.get(`${baseUrl}/songs?type=composition`)
                 .then(res=>{
                     dispatch(loadSongsAdmin(res.data))
                     dispatch(loadSongs(res.data))
+                })
+                axios.get(`${baseUrl}/songs?type=interpretation`)
+                .then(res=>{
+                    dispatch(loadIntersAdmin(res.data))
+                    dispatch(loadInters(res.data))
                 })
             }else setShowAlerte(true)
         })

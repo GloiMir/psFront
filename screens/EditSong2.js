@@ -8,7 +8,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { MaterialIcons,Entypo,Ionicons } from '@expo/vector-icons'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
-import { loadSongsAdmin,loadSongs } from '../redux/actions'
+import { loadSongsAdmin,loadSongs,loadInters,loadIntersAdmin } from '../redux/actions'
 import { baseUrl } from '../api'
 
 import NetInfo from '@react-native-community/netinfo'
@@ -27,11 +27,18 @@ const EditSong = (props) => {
   const envoyer = () =>{
     NetInfo.addEventListener((info)=>{
       if(info.isConnected==true){
-        axios.post(`${baseUrl}/edit`,{id,auteur,titre,corps})
+        axios.post(`${baseUrl}/edit?type=${data.type}`,{id,auteur,titre,corps})
         .then((res)=>{
-          dispatch(loadSongsAdmin(res.data))
-          dispatch(loadSongs(res.data))
-          props.navigation.navigate('Gestion')
+          if(res.data.type === 'composition'){
+            dispatch(loadSongsAdmin(res.data.songs))
+            dispatch(loadSongs(res.data.songs))
+            props.navigation.navigate('Gestion')
+          }
+          if(res.data.type === 'interpretation'){
+            dispatch(loadIntersAdmin(res.data.songs))
+            dispatch(loadInters(res.data.songs))
+            props.navigation.navigate('Gestion')
+          }
         })
       }else setShowAlerte(true)
     })

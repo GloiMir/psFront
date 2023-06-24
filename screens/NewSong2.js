@@ -8,13 +8,15 @@ import { Picker } from '@react-native-picker/picker'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
-import { loadSongsAdmin,loadSongs } from '../redux/actions'
+import { loadSongsAdmin,loadSongs,loadInters,loadIntersAdmin } from '../redux/actions'
 import { baseUrl } from '../api'
 
 import NetInfo from '@react-native-community/netinfo'
 
 const NewSong = (props) => {
   const dispatch = useDispatch()
+  const [showChoix,setShowChoix] = useState(true)
+  const [type,setType] = useState('')
   const [auteur,setAuteur] = useState('')
   const [titre,setTitre] = useState('')
   const [corps,setCorps] = useState([{type:"type",content:""}])
@@ -25,11 +27,18 @@ const NewSong = (props) => {
   const envoyer = () =>{
     NetInfo.addEventListener((info)=>{
       if(info.isConnected===true){
-        axios.post(`${baseUrl}/song`,{auteur,titre,corps})
+        axios.post(`${baseUrl}/song?type=${type}`,{auteur,titre,corps})
         .then((res)=>{
-          dispatch(loadSongsAdmin(res.data))
-          dispatch(loadSongs(res.data))
-          props.navigation.navigate('Gestion')
+          if(res.data.type === 'composition'){
+            dispatch(loadSongsAdmin(res.data.songs))
+            dispatch(loadSongs(res.data.songs))
+            props.navigation.navigate('Gestion')
+          }
+          if(res.data.type === 'interpretation'){
+            dispatch(loadIntersAdmin(res.data.songs))
+            dispatch(loadInters(res.data.songs))
+            props.navigation.navigate('Gestion')
+          }
         })
       }else setShowAlerte(true)
     })
@@ -73,6 +82,15 @@ const NewSong = (props) => {
       <Overlay overlayStyle={{width:'80%',backgroundColor:'#3C4C59',padding:0,borderRadius:15,alignItems:'center'}} isVisible={showAlerte} onBackdropPress={()=>setShowAlerte(false)}>
           <MaterialIcons name="wifi-off" size={80} color="orange" />
           <Text style={{fontSize:20,fontWeight:'bold',textAlign:'center',marginTop:10,marginBottom:10,color:'white'}}>Verifiez votre connexion internet</Text>
+      </Overlay>
+      <Overlay isVisible={showChoix} overlayStyle={{height:'30%',width:'80%',backgroundColor:'#3C4C59',padding:0,borderRadius:15,justifyContent:'space-evenly',alignItems:'center'}}>
+        <Text style={{fontSize:18,color:'white',fontWeight:'bold',textAlign:'center',marginTop:10,marginBottom:10}}>Que voulez-vous ajouter ?</Text>
+        <TouchableOpacity style={{backgroundColor:'rgba(63,67,89,1)',width:200,height:50,justifyContent:'center',alignItems:'center',borderRadius:30}} onPress={()=>{setType('composition');setShowChoix(false)}}>
+          <Text style={{fontSize:16,color:'white',fontWeight:'bold',textAlign:'center'}}>Une composition</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={{backgroundColor:'rgba(63,67,89,1)',width:200,height:50,justifyContent:'center',alignItems:'center',borderRadius:30}} onPress={()=>{setType('interpretation');setShowChoix(false)}}>
+          <Text style={{fontSize:16,color:'white',fontWeight:'bold',textAlign:'center'}}>Une Interpretation</Text>
+        </TouchableOpacity>
       </Overlay>
     </View>
     </KeyboardAwareScrollView>

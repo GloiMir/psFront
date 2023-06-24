@@ -15,3 +15,19 @@ export const getSongs = async () => {
         console.log(error)
     }
 }
+
+export const saveInterpretations = async (value) => {
+    try {
+        await AsyncStorage.setItem('interpretations', value)
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const getInterpretations = async () => {
+    try {
+        const songs =await AsyncStorage.getItem('interpretations')
+        return songs
+    } catch (error) {
+        console.log(error)
+    }
+}
